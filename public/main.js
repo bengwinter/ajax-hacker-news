@@ -21,7 +21,6 @@ Hacker.createPost = function() {
     url: '/posts/create', 
     type: 'post',
     data: {title: title, link: link, body: body},
-    debugger;
     dataType: 'json',
     success: function(data) {
       $('#posts').append("<div class='post'> <div class='post-title'>" + data.title + "</div> <div class='post-link'>" + data.link + "</div> <div class='post-body'>" + data.body + "</div> <form class='comment-form'> <input name='content' class='comment-content-field'/> <button class='comment-create-button'>Submit</button> </form> </div>");
@@ -69,12 +68,6 @@ Hacker.renderComments = function(data) {
   });
 };
 
-$(document).ready(function() {
-  Hacker.getComments();
-  $('#comment-create-button').click(function(e) {
-    e.preventDefault();
-    Blog.createComment();
-    })
 
 $(document).ready(function() {
   Hacker.getPosts();
