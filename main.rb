@@ -9,9 +9,11 @@ set :database, {adapter: 'postgresql',
                host: 'localhost'}
 
 class Post < ActiveRecord::Base
+  has_many :comments
 end
 
 class Comment < ActiveRecord::Base
+  belongs_to :post
 end
 
 get '/posts.json' do
@@ -20,4 +22,8 @@ end
 
 post '/posts/create' do
   Post.create(title: params[:title], link: params[:link], body: params[:body]).to_json
+end
+
+get '/posts/comments.json' do
+  Post.find(params[:id]).comments
 end
